@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { text-align: center; padding: 50px; font-family: Arial; }
+    button { padding: 15px 30px; font-size: 18px; margin: 10px; }
+    p { margin-top: 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Stellar Dapp</h1>
+  <button onclick="showRegister()">Register</button>
+  <button onclick="showLogin()">Login</button>
+
+  <div id="onboarding"></div>
+
+  <script>
+    function simulateBiometricAuth(callback) {
+      const confirmed = confirm("Simulate Face ID or Fingerprint authentication?");
+      if (confirmed) callback();
+      else alert("Authentication failed.");
+    }
+
+    function showRegister() {
+      document.getElementById('onboarding').innerHTML = `
+        <p>Ready to create your Stellar Wallet?</p>
+        <button onclick="connectWallet()">Create Wallet</button>
+      `;
+    }
+
+    function showLogin() {
+      document.getElementById('onboarding').innerHTML = `
+        <p>Please authenticate to access your wallet.</p>
+        <button onclick="simulateBiometricAuth(connectWallet)">Login with Face ID / Fingerprint</button>
+      `;
+    }
+
+    async function connectWallet() {
+      const publicKey = 'GMOCKPUBLICKEY1234567890MOCKED';
+      document.getElementById('onboarding').innerHTML = '<p>Wallet Public Key: ' + publicKey + '</p>';
+      console.log('Wallet Public Key:', publicKey);
+    }
+  </script>
+</body>
+</html>
